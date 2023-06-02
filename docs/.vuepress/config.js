@@ -12,7 +12,7 @@ module.exports = {
         repo: 'vuejs/vuepress',
         
         // 可选，默认为 master
-        docsBranch: 'master',
+        docsBranch: 'main',
         // 默认为 true，设置为 false 来禁用
         editLinks: true,
         nav: [
@@ -31,7 +31,7 @@ module.exports = {
                 title: '工具安装配置',
                 collapsable: false,
                 children: [
-                    ['/DEV', '环境配置'],
+                    ['/docker', 'docker'],
                     
                 ]
             },
