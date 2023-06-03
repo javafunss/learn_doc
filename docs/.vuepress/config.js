@@ -2,17 +2,19 @@
 module.exports = {
     title: "LIP",
     description: "个人学习总结文档",
-    base: '/learn_doc/',
+    base: '/learn_website/',
     markdown: {
         lineNumbers: true,
     },
     theme: 'reco',
+    locales: {
+        '/': {
+            lang: 'zh-CN'
+        }
+    },
     themeConfig: {
         // 假定 GitHub。也可以是一个完整的 GitLab 网址
         repo: 'vuejs/vuepress',
-        
-        // 可选，默认为 master
-        docsBranch: 'main',
         // 默认为 true，设置为 false 来禁用
         editLinks: true,
         nav: [
