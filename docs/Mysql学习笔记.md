@@ -91,3 +91,21 @@ grant all on *.* to 'crm'@'%' IDENTIFIED BY '密码';
 查询端口：  `show global variables like 'port';`
 
 ## Mysql 配置优化
+
+## Mysql 常见问题总结:
+### 时区问题
+Msql系统时区，时间显示问题:
+1.配置数据库：
+设置全局时区：set global time_zone='+8:00
+永久生效：
+// 配置的位置，无论5.7还是8.x版本，都必须配在 [mysqld] 下面
+[mysqld]
+default-time-zone=+08:00
+character-set-server=utf8mb4
+
+2.JDBC连接
+url: jdbc:mysql://${zlt.datasource.ip}:20036/learning_machine?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+
+暂时可以不用：
+3.json转换，Springboot默认使用JsonFormat，会将时间转换为UTC，需要配置：
+@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
