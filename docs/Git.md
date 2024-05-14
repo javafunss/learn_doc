@@ -2,6 +2,7 @@
 ## 环境配置
 
 ## 常用命令
+```sh
 Git命令：
 
 添加提交：`git add file git commit -m "注释"`  
@@ -50,6 +51,12 @@ Git命令：
 
 强制删除分支：`git branch -D feature-vulcan`
 
+重命名本地 master 分支
+git branch -m master main
+
+删除远程分支
+git push origin --delete master
+
 查看stash存储区：`git stash list`
 修复bug时，我们会通过创建新的bug分⽀进⾏修复，然后合并，最后删除；
 当⼿头⼯作没有完成时，先把⼯作现场`git stash`⼀下，然后去修复bug，修复后，再`git stash pop`，回到⼯作现场
@@ -83,8 +90,9 @@ Git命令：
 删除⼀个本地标签:`git tag -d tagname`
 
 删除⼀个远程标签:`git push origin :refs/tags/tagname`
+```
 
-创建项目并与远程关联
+## 创建项目默认步骤
 ```sh
 git init   // 1. 初始化项目文件夹
  
@@ -121,13 +129,24 @@ git push
 
 6. 删除远程分支
 git push origin :develop
-
 ```
 
-在GitHub上，可以任意Fork开源仓库；
-• ⾃⼰拥有Fork后的仓库的读写权限；
-• 可以推送pull request给官⽅仓库来贡献代码。
+## git 使用过程中问题总结
+```sh
+# 当你在 dev 分支上执行了 git rebase feature_rebuild 操作之后，dev 分支的历史相对于远程的 origin/dev 发生了改变。这是因为 rebase 操作通过在 feature_rebuild 分支的基础上重新应用 dev 分支的提交，实际上重写了 dev 分支的部分历史。这导致了本地的 dev 分支与远程的 origin/dev 分支历史不一致，即“diverged”。
+# 本地的 dev 分支有25个提交（包括rebase之后的新提交）。
+# 远程的 origin/dev 分支有24个提交，这些提交与本地的25个提交中的部分或全部不相同
 
+强行推送（force push）：如果你确定你的本地分支历史是正确的，并且不会影响到其他协作者的工作，可以使用 git push origin dev --force 或 git push origin dev --force-with-lease 强制更新远程 origin/dev 分支。但是，这样做会覆盖远程分支的历史，团队中的其他成员如果他们的本地分支尚未更新，可能会遇到问题。因此，在执行此操作之前，确保通知团队成员，并且了解这样做带来的风险。
+
+合并远程分支：如果你不想强制推送，可以选择先从远程拉取最新的 origin/dev 分支到本地，然后将本地的 dev 分支合并到这个最新的远程分支。这样可以保留两份历史，但可能会导致提交历史有些混乱。操作如下：
+git fetch origin dev
+git merge origin/dev
+
+
+
+
+```
 
 
 ## svn 迁移 git
