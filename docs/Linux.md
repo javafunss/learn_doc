@@ -16,9 +16,17 @@ find . -name '*.*' -type f -print -exec rm -rf {} \;
 -exec 后跟一个所要执行的命令，表示将 find 出来的文件或目录执行该命令
 ```
 
+## 清除linux上无用的日志
+```bash
+# 你想根据时间来清理日志，可以使用--vacuum-time选项。这个选项后面跟的是时间单位（如s, m, h, d, w, M, y，分别代表秒、分钟、小时、天、周、月、年），以及你想要保留的日志的时间长度
+# 想根据日志文件占用的磁盘空间大小来清理日志，可以使用--vacuum-size选项
+`sudo journalctl --vacuum-time=1w`
+`sudo journalctl --vacuum-size=500M`
+```
+
 ## linux 
-scp 从一台机器拷贝文件到另一台
 ```sh
+# scp 从一台机器拷贝文件到另一台
 scp root@112.124.22.190:/root/app/db_dump/plm_db_rel_dump/20230802.tar ./20230802.tar
 ```
 
