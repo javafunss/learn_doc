@@ -9,5 +9,16 @@ function jsonToParamString(jsonObj) {
     return paramString.trim(); // 移除最后的换行符
 }
 
-let jsonParams = {"playerId":"1601035471309930497","role":"1","phone":"18580360183","gender":"1","birthDate":"2023-01-22","avatra":"http://uban.61cczj.com/FodPxDvCs5Wrs-nCOv4fN8YhH5Dk","nickName":"牟某某1","familyPlayerId":"1427238761812111361"}
+let jsonParams = {
+  phone: "18580360183",
+  nickName: "李鹏学生6",
+  birthDay: "2020-01-01",
+  role: 1,
+  gender: "2",
+  avatra: "https://applinks.61cczj.com/cat_img_v3/WechatIMG12201.jpg",
+  appId: "1380447381118427138",
+  kindergartenId: "1631855037754011650",
+  classId: "1767025798247727106",
+  playerId: "1699964609554886657",
+};
 console.log(jsonToParamString(jsonParams));
